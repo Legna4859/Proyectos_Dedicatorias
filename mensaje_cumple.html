@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+<title>💌 Carta Animada</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url('Imagenes/heart-colorful-digital-art-4k-wallpaper-uhdpaper.com-557@5@f.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+  }
+
+  .sobre {
+    position: relative;
+    width: 350px;  /* Ancho ligeramente aumentado para más comodidad */
+    height: 260px; /* Altura ajustada */
+    cursor: pointer;
+    perspective: 800px;
+  }
+
+  .sobre-cuerpo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffc7d4;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .solapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-image: #ff99b3;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: bottom center;
+    transition: transform 0.8s ease;
+    z-index: 3;
+  }
+
+  .carta {
+    position: absolute;
+    width: 90%;
+    height: 200px;  /* Altura ajustada para texto */
+    top: 100%;
+    left: 5%;
+    background: #fffdfb;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    padding: 20px 25px;  /* Más espacio interno para mejor lectura */
+    opacity: 0;
+    transition: top 1s ease, opacity 1s ease, box-shadow 1s ease;
+    z-index: 5;
+    overflow-y: auto;
+  }
+
+  .carta h2 {
+    text-align: center;
+    color: #e43f6f;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .carta p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0 0 10px 0;
+  }
+
+  .carta p:last-child {
+    text-align: right;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #d94c71;
+  }
+
+  .sobre.abierto .solapa {
+    transform: rotateX(-180deg);
+  }
+
+  .sobre.abierto .carta {
+    top: 10%;
+    opacity: 1;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
+
+  .corazon {
+    position: fixed;
+    color: #ff6f91;
+    font-size: 20px;
+    pointer-events: none;
+    animation: flotar 3s linear forwards;
+  }
+
+  @keyframes flotar {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.8); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="sobre" id="sobre">
+    <div class="solapa"></div>
+    <div class="sobre-cuerpo"></div>
+    <div class="carta">
+      <h2 style="font-family: 'Dancing Script', cursive;">🎉 ¡Feliz Cumpleaños! 🎂</h2>
+      <p style="font-family: 'Dancing Script', cursive;">
+        Hoy es tu día, un momento para sonreír,<br>
+        para recordar lo hermoso que es vivir y disfrutar cada instante.<br>
+        Que cada deseo que pidas se cumpla con una chispa de amor.
+      </p>
+      <p style="font-family: 'Dancing Script', cursive;">
+        Con mucho cariño,<br>Tu admirador secreto 💖
+      </p>
+    </div>
+  </div>
+
+<script>
+  const sobre = document.getElementById("sobre");
+
+  sobre.addEventListener("click", () => {
+    if (!sobre.classList.contains("abierto")) {
+      sobre.classList.add("abierto");
+      crearCorazones();
+    } else {
+      sobre.classList.remove("abierto");
+    }
+  });
+
+  function crearCorazones() {
+    for (let i = 0; i < 25; i++) {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.textContent = ["💖","💗","💞","❤️","💕"][Math.floor(Math.random()*5)];
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.style.top = (window.innerHeight - 30) + "px";
+      corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+      document.body.appendChild(corazon);
+      setTimeout(() => corazon.remove(), 3000);
+    }
+  }
+</script>
+</body>
+</html>

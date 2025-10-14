@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Island Moments', cursive;
+  margin: 0;
+}
+
+.frase {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.frase:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.9);
+}
+
+.mensaje {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px #ff6f91;
+  animation: aparecer 1s ease forwards;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
